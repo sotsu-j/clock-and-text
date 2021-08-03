@@ -1,0 +1,4 @@
+type TimeContext = [
+    State,
+    SetStateAction
+]
