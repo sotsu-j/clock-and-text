@@ -18,5 +18,6 @@ export const StyledText = styled.div`
   align-items: center;
   width: 100%;
   height: 100%;
-  font-size: 72pt;
+  padding: 10vw;
+  font-size: 5vw;
 `
