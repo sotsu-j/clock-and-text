@@ -24,7 +24,7 @@ export default function Home() {
             <Clock />
           </ContentsChanger>
         </main>
-        <MyAppBar><Typography>15分感覚で帯の色が同じ色に戻ります</Typography></MyAppBar>
+        <MyAppBar><Typography>15分間隔で帯の色が同じ色に戻ります</Typography></MyAppBar>
       </TimeProvider>
     </StyledHome>
   )
