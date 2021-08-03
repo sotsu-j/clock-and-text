@@ -1,4 +1,4 @@
 type TimeContext = [
-    State,
+    Date,
     SetStateAction
 ]

@@ -1,7 +1,7 @@
 import React, { FC, useState, useEffect } from "react";
 
 import { styled } from '@material-ui/core/styles';
-import { AppBar, Toolbar} from "@material-ui/core";
+import { AppBar, Toolbar } from "@material-ui/core";
 import {
     red, pink, purple, deepPurple, indigo, blue, lightBlue, cyan,
     teal, green, lightGreen, lime, yellow, amber, orange, deepOrange,
@@ -9,12 +9,20 @@ import {
 import useTime from "./useTime";
 
 interface StyledAppBarProps {
-    backgroundColor: string;
+    backgroundcolor: string;
 }
 
-
 const StyledAppBar = styled(AppBar)({
-    backgroundColor: (props: StyledAppBarProps) => props.backgroundColor,
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: (props: StyledAppBarProps) => props.backgroundcolor,
+});
+
+const StyledToolbar = styled(Toolbar)({
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
 });
 
 const colors = [
@@ -22,20 +30,19 @@ const colors = [
     teal, green, lightGreen, lime, yellow, amber, orange, deepOrange,
 ];
 
-export const MyAppBar = () => {
+export const MyAppBar: FC = ({ children }) => {
     const [color, setColor] = useState<string>(red[500]);
     const [time] = useTime();
 
-    console.log(time)
     useEffect(() => {
-        console.log(time)
-        setColor(colors[time % 15][500]);
+        setColor(colors[time.getMinutes() % 15][500]);
     }, [time]);
 
     return (
-        <StyledAppBar position="static" color="inherit" backgroundColor={color}>
-            <Toolbar>
-            </Toolbar>
+        <StyledAppBar position="static" color="inherit" backgroundcolor={color}>
+            <StyledToolbar>
+                {children}
+            </StyledToolbar>
         </StyledAppBar>
     );
 }

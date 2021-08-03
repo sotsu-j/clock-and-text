@@ -2,7 +2,7 @@ import React, { FC, useState, useEffect, useContext, createContext } from "react
 
 import useContainer from './useContainer'
 
-const Context = createContext<TimeContext>([0, () => { }]);
+const Context = createContext<TimeContext>([new Date(), () => { }]);
 
 const Provider: FC = ({ children }) => {
 	const [state, setState] = useContainer()
@@ -11,7 +11,7 @@ const Provider: FC = ({ children }) => {
 	useEffect(() => {
 		if (intervalID == null) {
 			setIntervalID(setInterval(() => {
-				setState((new Date()).getTime());
+				setState(new Date());
 			}, 1000));
 		}
 
@@ -30,7 +30,7 @@ const Provider: FC = ({ children }) => {
 	)
 }
 
-const __useState = () => {
+const __useState = (): TimeContext => {
 	const [state, dispatch] = useContext(Context);
 	return [state, dispatch];
 }

@@ -1,28 +1,13 @@
-import { useEffect } from 'react';
-import { useState } from 'react';
+import { FC } from 'react';
 
-import { StyledClock } from './style'
+import { StyledClock } from './style';
+import useTime from './useTime';;
 
-export const Clock = () => {
-    const [time, setTime] = useState(new Date());
-    const [intervalID, setIntervalID] = useState<NodeJS.Timer | null>(null);
-
-    useEffect(() => {
-        if (intervalID == null) {
-            setIntervalID(setInterval(() => {
-                setTime(new Date());
-            }, 1000));
-        }
-        return () => {
-            if (intervalID) {
-                clearInterval(intervalID);
-                setIntervalID(null);
-            }
-        }
-    }, []);
+export const Clock: FC<{ size?: 'small' | 'large' }> = ({ size = 'large' }) => {
+    const [time] = useTime();
 
     return (
-        <StyledClock>
+        <StyledClock size={size}>
             {`0${time.getHours()}`.slice(-2)}:{`0${time.getMinutes()}`.slice(-2)}:{`0${time.getSeconds()}`.slice(-2)}
         </StyledClock>
     )

@@ -1,9 +1,7 @@
 import styled from 'styled-components'
 
-export const StyledClock = styled.div`
+export const StyledClock = styled.div<{ size: 'large' | 'small' }>`
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
-    font-size: 18vw;
+    font-size: ${(props) => props.size === 'large' ? '18vw' : '2em'};
 `
